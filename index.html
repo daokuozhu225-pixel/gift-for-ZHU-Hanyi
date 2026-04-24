@@ -251,7 +251,7 @@ function generateHeart(){
   const s=Math.min(window.innerWidth,window.innerHeight)/40;
 
   // 主描边
-  for(let i=0;i<100;i++){
+  for(let i=0;i<80;i++){
     const t=i/100*Math.PI*2;
     const p=heart(t,s);
 
@@ -265,7 +265,7 @@ function generateHeart(){
   }
 
   // 内侧描边
-  for(let i=0;i<80;i++){
+  for(let i=0;i<60;i++){
     const t=i/80*Math.PI*2;
     const p=heart(t,s*0.96);
 
@@ -296,7 +296,7 @@ function showHighFive(){
 
 // 爆炸
 function explode(){
-  for(let i=0;i<180;i++){
+  for(let i=0;i<150;i++){
     const d=document.createElement('div');
     d.className='burst';
     d.innerText=burstMsgs[i%burstMsgs.length];
