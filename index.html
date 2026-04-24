@@ -12,36 +12,6 @@ body{
   font-family:"PingFang SC","Microsoft YaHei";
   overflow:hidden;
 
-  /* 🌈 动态渐变背景 */
-  background:linear-gradient(-45deg,
-    #ffd6e7,
-    #e0c3fc,
-    #cde9ff,
-    #d4fcf0
-  );
-  background-size:400% 400%;
-  animation:bgMove 12s ease infinite;
-}
-
-/* 背景动画 */
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-/* 光斑（轻量，不会卡） */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.3), transparent 40%),
-    radial-gradient(circle at 60% 80%, rgba(255,255,255,0.4), transparent 40%);
-}
 
 
 /* 标题气泡 */
@@ -197,14 +167,11 @@ const burstMsgs = [
   "记得吃饭",
   "慢慢来",
   "别否定自己",
-  "都会过去的",
   "辛苦啦",
   "给你好运",
-  "明天会更好",
   "先深呼吸",
   "每天都很棒",
   "不急就是稳",
-  "可以休息一下",
   "一切都在变好",
   "我相信你",
   "继续向前",
