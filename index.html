@@ -170,7 +170,7 @@ body::before{
 
 <body>
 
-<div class="title">朱同学加油！</div>
+<div class="title">给朱同学加油！</div>
 
 <audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
@@ -194,8 +194,6 @@ const burstMsgs = [
   "别太累",
   "记得吃饭",
   "慢慢来",
-  "会好的",
-  "你值得",
   "别否定自己",
   "都会过去的",
   "辛苦啦",
@@ -208,7 +206,6 @@ const burstMsgs = [
   "一切都在变好",
   "我相信你",
   "继续向前",
-  "今天也很好",
   "稳住稳住",
   "数学英语专业课都牛！",
   "记得tan导数",
@@ -299,7 +296,7 @@ function showHighFive(){
 
 // 爆炸
 function explode(){
-  for(let i=0;i<240;i++){
+  for(let i=0;i<180;i++){
     const d=document.createElement('div');
     d.className='burst';
     d.innerText=burstMsgs[i%burstMsgs.length];
