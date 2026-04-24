@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>给朱同学的一点鼓励 ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:"PingFang SC","Microsoft YaHei";
+  overflow:hidden;
+
+  /* 🌈 动态渐变背景 */
+  background:linear-gradient(-45deg,
+    #ffd6e7,
+    #e0c3fc,
+    #cde9ff,
+    #d4fcf0
+  );
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
+}
+
+/* 背景动画 */
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* 光斑（轻量，不会卡） */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.3), transparent 40%),
+    radial-gradient(circle at 60% 80%, rgba(255,255,255,0.4), transparent 40%);
+}
+
+
+/* 标题气泡 */
+.title{
+  position:fixed;
+  left:50%;
+  top:24px;
+  transform:translateX(-50%);
+  z-index:30;
+
+  padding:12px 26px;
+  border-radius:999px;
+  font-size:clamp(20px,5vw,34px);
+  font-weight:900;
+  color:#fff;
+
+  background:linear-gradient(135deg,#ff6b9d,#7b61ff,#4cc9f0);
+  box-shadow:0 12px 30px rgba(255,100,150,0.3);
+
+  animation:float 2.5s ease-in-out infinite;
+}
+
+.title::after{
+  content:"";
+  position:absolute;
+  top:4px;left:15px;right:15px;
+  height:35%;
+  border-radius:999px;
+  background:rgba(255,255,255,0.25);
+}
+
+@keyframes float{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(-6px)}
+}
+
+/* 气泡 */
+.bubble{
+  position:absolute;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(0.2);
+  padding:8px 14px;
+  border-radius:999px;
+  color:#fff;
+  font-weight:700;
+  font-size:13px;
+  white-space:nowrap;
+
+  background:linear-gradient(135deg,#ff6b9d,#7b61ff);
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+  opacity:0;
+  animation:pop 1s forwards;
+}
+
+.bubble::after{
+  content:"";
+  position:absolute;
+  top:3px;left:10px;right:10px;
+  height:35%;
+  border-radius:999px;
+  background:rgba(255,255,255,0.25);
+}
+
+@keyframes pop{
+  to{
+    opacity:1;
+    transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1);
+  }
+}
+
+/* 击掌 */
+.highfive{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) scale(0.2);
+
+  padding:18px 30px;
+  border-radius:999px;
+
+  background:linear-gradient(135deg,#ff6b9d,#7b61ff,#4cc9f0);
+  color:#fff;
+  font-weight:900;
+  font-size:22px;
+
+  box-shadow:0 16px 38px rgba(255,100,150,0.35);
+
+  opacity:0;
+  animation:popHF 0.8s forwards;
+  cursor:pointer;
+  z-index:40;
+}
+
+@keyframes popHF{
+  to{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+}
+
+/* 爆炸 */
+.burst{
+  position:absolute;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  padding:7px 12px;
+  border-radius:999px;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+
+  animation:explode 3s forwards;
+}
+
+@keyframes explode{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(0.3)}
+  20%{opacity:1}
+  100%{
+    transform:translate(calc(-50% + var(--bx)),calc(-50% + var(--by)));
+    opacity:0.9;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">朱同学加油！</div>
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// 文案
+const heartMsgs = [
+  "魔丸大人加油",
+  "不急不急！",
+  "慢慢来",
+  "灵珠在呢",
+  "你可以的",
+  "相信自己"
+];
+
+const burstMsgs = [
+  "加油加油",
+  "你很棒",
+  "别太累",
+  "记得吃饭",
+  "慢慢来",
+  "会好的",
+  "你值得",
+  "别否定自己",
+  "都会过去的",
+  "辛苦啦",
+  "给你好运",
+  "明天会更好",
+  "先深呼吸",
+  "每天都很棒",
+  "不急就是稳",
+  "可以休息一下",
+  "一切都在变好",
+  "我相信你",
+  "继续向前",
+  "今天也很好",
+  "稳住稳住",
+  "数学英语专业课都牛！",
+  "记得tan导数",
+  "阅读不许阴了",
+  "茆书没问题！"
+];
+
+// 颜色
+const colors=[
+"#ff6b9d","#7b61ff","#4cc9f0",
+"#52b788","#ffd166","#f77f00"
+];
+
+function randColor(){
+  return colors[Math.floor(Math.random()*colors.length)];
+}
+
+// 心形函数
+function heart(t,s){
+  return {
+    x:16*Math.pow(Math.sin(t),3)*s,
+    y:-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*s
+  }
+}
+
+// 创建气泡
+function createBubble(text,x,y,i,delay){
+  const d=document.createElement('div');
+  d.className='bubble';
+  d.innerText=text;
+
+  d.style.background=`linear-gradient(135deg,${randColor()},${randColor()})`;
+
+  d.style.setProperty('--x',x+'px');
+  d.style.setProperty('--y',y+'px');
+  d.style.animationDelay=delay+'s';
+
+  document.body.appendChild(d);
+}
+
+// ⭐ 平衡版心形描边
+function generateHeart(){
+  const s=Math.min(window.innerWidth,window.innerHeight)/40;
+
+  // 主描边
+  for(let i=0;i<100;i++){
+    const t=i/100*Math.PI*2;
+    const p=heart(t,s);
+
+    createBubble(
+      heartMsgs[i%heartMsgs.length],
+      p.x+(Math.random()-0.5)*2,
+      p.y+(Math.random()-0.5)*2,
+      i,
+      i*0.02
+    );
+  }
+
+  // 内侧描边
+  for(let i=0;i<80;i++){
+    const t=i/80*Math.PI*2;
+    const p=heart(t,s*0.96);
+
+    createBubble(
+      heartMsgs[i%heartMsgs.length],
+      p.x+(Math.random()-0.5)*1.5,
+      p.y+(Math.random()-0.5)*1.5,
+      i,
+      1.2+i*0.02
+    );
+  }
+
+  setTimeout(showHighFive,5000);
+}
+
+// 击掌
+function showHighFive(){
+  const d=document.createElement('div');
+  d.className='highfive';
+  d.innerText='击掌一下 ✋';
+  document.body.appendChild(d);
+
+  d.onclick=()=>{
+    startMusic();
+    explode();
+  }
+}
+
+// 爆炸
+function explode(){
+  for(let i=0;i<240;i++){
+    const d=document.createElement('div');
+    d.className='burst';
+    d.innerText=burstMsgs[i%burstMsgs.length];
+
+    const angle=Math.random()*Math.PI*2;
+    const r=Math.random()*window.innerWidth*0.6;
+
+    d.style.background=`linear-gradient(135deg,${randColor()},${randColor()})`;
+
+    d.style.setProperty('--bx',Math.cos(angle)*r+'px');
+    d.style.setProperty('--by',Math.sin(angle)*r+'px');
+
+    document.body.appendChild(d);
+  }
+}
+
+let started=false;
+function startMusic(){
+  if(started)return;
+  started=true;
+  document.getElementById('bgm').play().catch(()=>{});
+}
+
+window.onload=generateHeart;
+
+</script>
+
+</body>
+</html>
